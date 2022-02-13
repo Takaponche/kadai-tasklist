@@ -4,9 +4,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def index
-    if logged_in?
-    @pagy, @tasks = pagy(Task.all)
-    end
+    @pagy, @tasks = pagy(current_user.tasks.all)
   end
 
   def show
